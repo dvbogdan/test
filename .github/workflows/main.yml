@@ -15,8 +15,8 @@ jobs:
       
     - name: Create symbolic link
       run: |
-        mkdir /github
-        mkdir /github/workspace
+        sudo mkdir /github
+        sudo mkdir /github/workspace
         sudo ln -s /home/runner/work/test/test /github/workspace
 
       
