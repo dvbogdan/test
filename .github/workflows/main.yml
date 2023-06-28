@@ -1,0 +1,38 @@
+name: Deploy to FTP server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Print working directory
+      run: |
+        pwd
+        ls ./
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.19
+
+#     - name: Install and Build
+#       run: |
+#         npm ci
+#         npm run build
+
+    - name: Deploy to FTP server
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ftps://s118.cyber-folks.pl/
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: /home/runner/work/zeroProject/zeroProject
+        git-ftp-args: --insecure
