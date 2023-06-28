@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Test FTP connection
+      run: |
+        echo "Checking FTP connection to ${{ secrets.FTP_SERVER }} on port 21"
+        nc -z -v -w5 ${{ secrets.FTP_SERVER }} 21
+    
     - name: Checkout code
       uses: actions/checkout@v3
      
