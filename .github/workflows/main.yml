@@ -23,22 +23,24 @@ jobs:
 
     - name: Push to FTP
       run: |
-        git config git-ftp.url "ftp://s118.cyber-folks.pl:21/"
+        git config git-ftp.url "ftpes://s118.cyber-folks.pl:21/"
         git config git-ftp.user "${{ secrets.FTP_USERNAME }}"
         git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
+        git config git-ftp.insecure 1
+        git config git-ftp.disable-epsv 1
   #      git ftp init --insecure
       continue-on-error: true
     
     - name: Initial push to FTP
-      run: git ftp init
+      run: git ftp --auto-init --insecure
       continue-on-error: true
 
     - name: Catch up with FTP
-      run: git ftp catchup
+      run: git ftp catchup --insecure
       continue-on-error: true
 
     - name: Sync with FTP
-      run: git ftp push
+      run: git ftp push  --insecure
       
 #     - name: Create symbolic link
 #       run: |
