@@ -13,6 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
+    - name: Create symbolic link
+      run: |
+        sudo ln -s /home/runner/work/test/test /github/workspace
+
+      
     - name: Print working directory
       run: |
         pwd
