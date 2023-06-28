@@ -25,7 +25,7 @@ jobs:
       continue-on-error: true
 
     - name: Sync with FTP
-      run: git ftp push --insecure
+      run: git ftp push
       
 #     - name: Create symbolic link
 #       run: |
