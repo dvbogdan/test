@@ -41,6 +41,7 @@ jobs:
 
     - name: Sync with FTP
       run: git ftp push
+      continue-on-error: true
       
 #     - name: Create symbolic link
 #       run: |
