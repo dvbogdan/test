@@ -23,6 +23,17 @@ jobs:
         git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
   #      git ftp init --insecure
       continue-on-error: true
+    
+    - name: Initial push to FTP
+      run: git ftp init --insecure
+      continue-on-error: true
+
+    - name: Catch up with FTP
+      run: git ftp catchup --insecure
+      continue-on-error: true
+
+    - name: Sync with FTP
+      run: git ftp push --insecure
 
     - name: Sync with FTP
       run: git ftp push
