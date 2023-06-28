@@ -18,10 +18,10 @@ jobs:
 
     - name: Push to FTP
       run: |
-        git config git-ftp.url "ftpes://s118.cyber-folks.pl:21/"
+        git config git-ftp.url "ftp://s118.cyber-folks.pl:21/"
         git config git-ftp.user "${{ secrets.FTP_USERNAME }}"
         git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
-        git ftp init --insecure
+  #      git ftp init --insecure
       continue-on-error: true
 
     - name: Sync with FTP
