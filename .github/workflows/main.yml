@@ -12,18 +12,31 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
-    - name: Create symbolic link
+     
+    - name: Set up Git FTP
+      run: sudo apt-get install git-ftp
+
+    - name: Push to FTP
       run: |
-        sudo mkdir /github
-        sudo mkdir /github/workspace
-        sudo ln -s /home/runner/work/test/test /github/workspace
+        git config git-ftp.url "ftps://${{ secrets.FTP_SERVER }}:21/path/to/your/folder"
+        git config git-ftp.user "${{ secrets.FTP_USERNAME }}"
+        git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
+        git ftp init --insecure
+      continue-on-error: true
+
+    - name: Sync with FTP
+      run: git ftp push --insecure
+      
+#     - name: Create symbolic link
+#       run: |
+#         sudo mkdir /github
+#         sudo mkdir /github/workspace
+#         sudo ln -s /home/runner/work/test/test /github/workspace
 
       
     - name: Print working directory
       run: |
         pwd
-        ls /github/workspace
 
 #     - name: Set up Node.js
 #       uses: actions/setup-node@v3
@@ -35,11 +48,11 @@ jobs:
 #         npm ci
 #         npm run build
 
-    - name: Deploy to FTP server
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
-      with:
-        ftp-server: ftps://s118.cyber-folks.pl/
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
-        git-ftp-args: --insecure
+#     - name: Deploy to FTP server
+#       uses: SamKirkland/FTP-Deploy-Action@3.1.1
+#       with:
+#         ftp-server: ftps://s118.cyber-folks.pl/
+#         ftp-username: ${{ secrets.FTP_USERNAME }}
+#         ftp-password: ${{ secrets.FTP_PASSWORD }}
+#         local-dir: ./
+#         git-ftp-args: --insecure
