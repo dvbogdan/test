@@ -37,6 +37,7 @@ jobs:
     - name: Print working directory
       run: |
         pwd
+        ls ./
 
 #     - name: Set up Node.js
 #       uses: actions/setup-node@v3
