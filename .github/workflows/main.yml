@@ -34,5 +34,5 @@ jobs:
         ftp-server: ftps://s118.cyber-folks.pl/
         ftp-username: ${{ secrets.FTP_USERNAME }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: /home/runner/work/zeroProject/zeroProject
+        local-dir: /home/runner/work/test/test
         git-ftp-args: --insecure
