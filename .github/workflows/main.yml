@@ -16,12 +16,12 @@ jobs:
     - name: Print working directory
       run: |
         pwd
-        ls ./
+        ls /github/workspace
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.19
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: 16.19
 
 #     - name: Install and Build
 #       run: |
@@ -34,5 +34,5 @@ jobs:
         ftp-server: ftps://s118.cyber-folks.pl/
         ftp-username: ${{ secrets.FTP_USERNAME }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: /home/runner/work/test/test
+        local-dir: ./
         git-ftp-args: --insecure
