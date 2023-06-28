@@ -32,15 +32,15 @@ jobs:
       continue-on-error: true
     
     - name: Initial push to FTP
-      run: git ftp --auto-init --insecure
+      run: git ftp init --auto-init
       continue-on-error: true
 
     - name: Catch up with FTP
-      run: git ftp catchup --insecure
+      run: git ftp catchup
       continue-on-error: true
 
     - name: Sync with FTP
-      run: git ftp push  --insecure
+      run: git ftp push
       
 #     - name: Create symbolic link
 #       run: |
@@ -64,11 +64,11 @@ jobs:
 #         npm ci
 #         npm run build
 
-#     - name: Deploy to FTP server
-#       uses: SamKirkland/FTP-Deploy-Action@3.1.1
-#       with:
-#         ftp-server: ftps://s118.cyber-folks.pl/
-#         ftp-username: ${{ secrets.FTP_USERNAME }}
-#         ftp-password: ${{ secrets.FTP_PASSWORD }}
-#         local-dir: ./
-#         git-ftp-args: --insecure
+    - name: Deploy to FTP server
+      uses: SamKirkland/FTP-Deploy-Action@3.1.2
+      with:
+        ftp-server: ftps://s118.cyber-folks.pl/
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        git-ftp-args: --insecure
