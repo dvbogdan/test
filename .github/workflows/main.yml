@@ -76,7 +76,7 @@ jobs:
         port: 21
         exclude: |
           **/.git*
-          **/src**
+          **src**
           **/.git*/**
           **/node_modules/**
           **/.idea/*
