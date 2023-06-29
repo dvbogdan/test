@@ -28,6 +28,8 @@ jobs:
         git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
         git config git-ftp.insecure 1
         git config git-ftp.disable-epsv 1
+        git config git-ftp.changed-only 1
+      
       continue-on-error: true
     
     - name: Initial push to FTP
