@@ -33,9 +33,9 @@ jobs:
       
       continue-on-error: true
     
-#     - name: Initial push to FTP
-#       run: git ftp init
-#       continue-on-error: true
+    - name: Initial push to FTP
+      run: git ftp init
+      continue-on-error: true
 
 #     - name: Catch up with FTP
 #       run: git ftp catchup
