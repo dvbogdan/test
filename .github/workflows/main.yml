@@ -18,29 +18,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
      
-#     - name: Set up Git FTP
-#       run: sudo apt-get install git-ftp
+    - name: Set up Git FTP
+      run: sudo apt-get install git-ftp
 
-#     - name: Push to FTP
-#       run: |
-#         git config git-ftp.url "ftpes://s118.cyber-folks.pl:21/"
-#         git config git-ftp.user "${{ secrets.FTP_USERNAME }}"
-#         git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
-#         git config git-ftp.insecure 1
-#         git config git-ftp.disable-epsv 1
-#       continue-on-error: true
+    - name: Push to FTP
+      run: |
+        git config git-ftp.url "ftpes://s118.cyber-folks.pl:21/"
+        git config git-ftp.user "${{ secrets.FTP_USERNAME }}"
+        git config git-ftp.password "${{ secrets.FTP_PASSWORD }}"
+        git config git-ftp.insecure 1
+        git config git-ftp.disable-epsv 1
+      continue-on-error: true
     
-#     - name: Initial push to FTP
-#       run: git ftp init --auto-init
-#       continue-on-error: true
+    - name: Initial push to FTP
+      run: git ftp init --auto-init
+      continue-on-error: true
 
-#     - name: Catch up with FTP
-#       run: git ftp catchup
-#       continue-on-error: true
+    - name: Catch up with FTP
+      run: git ftp catchup
+      continue-on-error: true
 
-#     - name: Sync with FTP
-#       run: git ftp push
-#       continue-on-error: true
+    - name: Sync with FTP
+      run: git ftp push
+      continue-on-error: true
       
 #     - name: Create symbolic link
 #       run: |
@@ -64,20 +64,20 @@ jobs:
 #         npm ci
 #         npm run build
 
-    - name: Deploy to FTP server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftp
-        log-level: verbose
-#         security: loose
-        port: 21
-        exclude: |
-          **/.git*
-          **src**
-          **/.git*/**
-          **/node_modules/**
-          **/.idea/*
-          **/lost+found/*
+#     - name: Deploy to FTP server
+#       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+#       with:
+#         server: ${{ secrets.FTP_SERVER }}
+#         username: ${{ secrets.FTP_USERNAME }}
+#         password: ${{ secrets.FTP_PASSWORD }}
+#         protocol: ftp
+#         log-level: verbose
+# #         security: loose
+#         port: 21
+#         exclude: |
+#           **/.git*
+#           **src**
+#           **/.git*/**
+#           **/node_modules/**
+#           **/.idea/*
+#           **/lost+found/*
