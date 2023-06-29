@@ -1,0 +1,8 @@
+*.json
+src*
+node_modules*
+.idea*
+lost+found*
+.git*
+.github*
+.DS_Store
