@@ -29,16 +29,17 @@ jobs:
         git config git-ftp.insecure 1
         git config git-ftp.disable-epsv 1
         git config git-ftp.changed-only 1
+        git config git-ftp.auto-init 1
       
       continue-on-error: true
     
     - name: Initial push to FTP
-      run: git ftp init --auto-init
+      run: git ftp init
       continue-on-error: true
 
-    - name: Catch up with FTP
-      run: git ftp catchup
-      continue-on-error: true
+#     - name: Catch up with FTP
+#       run: git ftp catchup
+#       continue-on-error: true
 
     - name: Sync with FTP
       run: git ftp push
