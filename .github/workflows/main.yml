@@ -29,12 +29,12 @@ jobs:
         git config git-ftp.insecure 1
         git config git-ftp.disable-epsv 1
         git config git-ftp.changed-only 1
-        git config git-ftp.auto-init 1
+#        git config git-ftp.auto-init 1
       
       continue-on-error: true
     
     - name: Initial push to FTP
-      run: git ftp init
+      run: git ftp init 
       continue-on-error: true
 
 #     - name: Catch up with FTP
@@ -42,8 +42,13 @@ jobs:
 #       continue-on-error: true
 
     - name: Sync with FTP
-      run: git ftp push
+      id: push
+      run: git ftp push --auto-init
       continue-on-error: true
+    
+    - name: Force push up with FTP
+      if: steps.push.outcome == 'failure'
+      run: git ftp push --force
       
 #     - name: Create symbolic link
 #       run: |
